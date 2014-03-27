@@ -13,13 +13,12 @@ class Slugger {
     //the field to search to check uniquness
     protected $field;
 
-    public function __construct(\PDO $db, $table = 'users', $field = 'slug') {
+    public function __construct(\PDO $db) {
         $this->db = $db;
-        $this->set($table, $field);
     }
 
     //allow for reset and chain
-    public function set($table, $field) {
+    public function set($table, $field = 'slug') {
         $this->table = $table;
         $this->field = $field;
         return $this;
@@ -54,7 +53,7 @@ class Slugger {
 
     //check if slug is unique in PDO database
     public function check($slug) {
-        $handler = $this->db->prepare("SELECT $this->field FROM $this->table WHERE $this->field = $slug");
+        $handler = $this->db->prepare("SELECT $this->field FROM $this->table WHERE $this->field = '$slug'");
         $handler->execute();
         $search = $handler->fetchAll();
         return count($search) ? false : true;
@@ -65,8 +64,7 @@ class Slugger {
         foreach ($options as $option) {
             $slug_extended = $this->makeString($slug . '-' . $option);
             $unique = $this->check($slug_extended);
-            if ($unique)
-                return $slug_extended;
+            if ($unique) return $slug_extended;
         }
 
         //last resort slug creation

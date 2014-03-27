@@ -18,7 +18,7 @@ try {
 
 $slug = new slugger($db);
 
-echo 'slugger';
+echo 'slug: ';
 
-echo $slug->set('properties', 'house')->create('12', array('91', 'hunger'));
+echo $slug->set('properties')->create('lake-buddy', array('91', 'hunger'));
 
