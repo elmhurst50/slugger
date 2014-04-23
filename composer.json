@@ -1,9 +1,7 @@
 {
     "name": "samjoyce777/slugger",
     "description": "Slug creator and uniquness checker",
-    "version": "1.0",
-    "type": "git",
-    "keywords": ["php", "image", "class"],
+    "keywords": ["php", "slugger", "class"],
     "homepage": "http://samjoyce.co.uk",
     "time": "2012-12-21",
     "license": "MIT",
